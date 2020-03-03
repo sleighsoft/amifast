@@ -1,7 +1,7 @@
 import random
 
-import format
-import dtypes
+from benchit import format
+from benchit import dtypes
 
 
 def test_times_as():

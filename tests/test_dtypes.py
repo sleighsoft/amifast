@@ -3,11 +3,12 @@ import math
 import statistics
 import time
 
-from dtypes import Stats, FunctionStats
+from benchit import dtypes
 
 
 def test_stats():
-    t = Stats([0.0])
+    t = dtypes.Stats([0.0])
+    assert t.minimum == 0.0
     assert t.minimum == 0.0
     assert t.maximum == 0.0
     assert t.mean == 0.0
@@ -19,7 +20,7 @@ def test_stats():
     assert math.isnan(t.throughput)
     assert math.isnan(t.throughput_min)
 
-    t = Stats([0.1, 0.2, 0.3, 0.4, 0.5])
+    t = dtypes.Stats([0.1, 0.2, 0.3, 0.4, 0.5])
     assert t.minimum == 0.1
     assert t.maximum == 0.5
     assert t.mean == 0.3
@@ -35,6 +36,9 @@ def test_stats():
     with pytest.raises(AttributeError):
         t.times = [10]
 
+    # TODO Test time unit conversion
+
 
 def test_functionstats():
+    # TODO Test dtypes.FunctionStats
     pass

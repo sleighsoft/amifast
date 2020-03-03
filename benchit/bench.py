@@ -1,18 +1,9 @@
 # https://www.peterbe.com/plog/how-to-do-performance-micro-benchmarks-in-python
-# https://pyperformance.readthedocs.io/usage.html#warmups-and-steady-state
-# https://github.com/ipython/ipython/blob/master/IPython/core/magics/execution.py#L1167
-# https://github.com/python/cpython/blob/3.8/Lib/timeit.py
-# https://docs.python.org/3
-# /library/timeit.html#timeit.Timer.repeat
-# https://ipython.org/ipython-doc/dev/interactive/magics.html#magic-timeit
-# https://jakevdp.github.io/PythonDataScienceHandbook/01.07-timing-and-profiling.html
-# https://browserbench.org/JetStream/in-depth.html
-
 
 import timeit
 import sys
 
-from dtypes import Stats
+from benchit.dtypes import Stats
 
 
 def benchit(fn, repetitions, setup="pass") -> Stats:
@@ -109,3 +100,15 @@ def throughput(fn, min_repetitions=1, setup="pass") -> Stats:
         repetitions += 1
         times.append(time)
     return Stats(times)
+
+
+# TODO Checkout what https://github.com/python/pyperformance does to benchmark
+# https://pyperf.readthedocs.io/en/latest/api.html
+
+# TODO Checkout cProfile.Profile() vs timeit
+# https://github.com/python-recsys/benchy/blob/master/benchy/benchmark.py#L58
+
+
+# TODO Add support for memory benchmarks (memit)
+# https://github.com/pythonprofilers/memory_profiler
+# https://jakevdp.github.io/PythonDataScienceHandbook/01.07-timing-and-profiling.html

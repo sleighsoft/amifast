@@ -1,8 +1,8 @@
-import decorators
-from dtypes import Stats
-
 import os
 import time
+
+from benchit import decorators
+from benchit import dtypes
 
 
 def _function():
@@ -12,11 +12,11 @@ def _function():
 
 def test_benchit():
     result = decorators.benchit(repetitions=2)(_function)()
-    assert isinstance(result, Stats)
+    assert isinstance(result, dtypes.Stats)
     assert result.repetitions == 2
 
     result = decorators.benchit(repetitions=2, setup="gc.enable()")(_function)()
-    assert isinstance(result, Stats)
+    assert isinstance(result, dtypes.Stats)
     assert result.repetitions == 2
 
     result = decorators.benchit(repetitions=2, setup="gc.enable()", enabled=False)(
@@ -32,11 +32,11 @@ def test_benchit():
 
 def test_single_shot():
     result = decorators.single_shot()(_function)()
-    assert isinstance(result, Stats)
+    assert isinstance(result, dtypes.Stats)
     assert result.repetitions == 1
 
     result = decorators.single_shot(setup="gc.enable()")(_function)()
-    assert isinstance(result, Stats)
+    assert isinstance(result, dtypes.Stats)
     assert result.repetitions == 1
 
     result = decorators.single_shot(setup="gc.enable()", enabled=False)(_function)()
@@ -50,15 +50,15 @@ def test_single_shot():
 
 def test_throughput():
     result = decorators.throughput()(_function)()
-    assert isinstance(result, Stats)
-    assert result.repetitions >= 1
+    assert isinstance(result, dtypes.Stats)
+    assert result.repetitions >=1
 
     result = decorators.throughput(min_repetitions=5)(_function)()
-    assert isinstance(result, Stats)
+    assert isinstance(result, dtypes.Stats)
     assert result.repetitions >= 5
 
     result = decorators.throughput(min_repetitions=5, setup="gc.enable()")(_function)()
-    assert isinstance(result, Stats)
+    assert isinstance(result, dtypes.Stats)
     assert result.repetitions >= 5
 
     result = decorators.throughput(
@@ -72,5 +72,6 @@ def test_throughput():
     del os.environ["ENABLE_BENCHMARKING"]
 
 
-def test_time_as():
+def test_stats_as():
+    # TODO Test
     pass

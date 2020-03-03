@@ -2,9 +2,9 @@ import io
 import csv
 import os
 
-from dtypes import Stats
+from benchit.dtypes import Stats
 
-_HEADER = [
+_STATS_HEADER = [
     "Min",
     "Max",
     "Mean",
@@ -39,7 +39,7 @@ def stats_as_csv(stats: Stats, header: bool = True, **kwargs) -> str:
 
     if isinstance(stats, Stats):
         if header:
-            writer.writerow(_HEADER)
+            writer.writerow(_STATS_HEADER)
 
         row = [
             stats.minimum,
@@ -65,8 +65,8 @@ def stats_as_markdown(stats: Stats, header: bool = True, **kwargs) -> str:
     md_str = io.StringIO()
 
     if isinstance(stats, Stats):
-        header = "| " + " | ".join(_HEADER) + " |"
-        header_length = len(_HEADER)
+        header = "| " + " | ".join(_STATS_HEADER) + " |"
+        header_length = len(_STATS_HEADER)
         if header:
             md_str.write(header + os.linesep)
             md_str.write("|" + ": --- :|" * header_length + os.linesep)
@@ -83,11 +83,12 @@ def stats_as_markdown(stats: Stats, header: bool = True, **kwargs) -> str:
     return md_str.getvalue()
 
 
+# TODO Maybe separate this from other formats and put into visualize.py
 def stats_as_plot(stats: Stats, **kwargs):
     try:
         import matplotlib.pyplot as plt
 
-        # TODO
+        # TODO Checkout other projects to gather useful plots
         return plt.Figure()
     except Exception:
         raise ImportError(

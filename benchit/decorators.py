@@ -1,13 +1,25 @@
+from typing import Union, Callable
 from functools import wraps
 import os
 
-import dtypes
-import bench
-import format
+from benchit import dtypes, bench, format
 
 
-def benchit(repetitions, setup="pass", enabled=True):
-    """Decorator for `bench.benchit()`."""
+def benchit(
+    repetitions, setup="pass", enabled=True
+) -> Union[Callable, dtypes.FunctionStats]:
+    """Decorator for `bench.benchit()`.
+    
+    Args:
+        repetitions (int): Number of times to benchmark function.
+        setup (str, optional): A function to run once before each call to `fn`. Defaults to "pass".
+        enabled (bool, optional): Enable or disable the wrapper. Defaults to True.
+    
+    Returns:
+        Union[Callable, dtypes.FunctionStats]: If `enabled`, applies the wrapper
+            which will benchmark the function and return a `dtypes.FunctionStats` object.
+            If False, this will be a no-op which returns the wrapped function.
+    """
 
     def inner(function):
         @wraps(function)
@@ -23,8 +35,18 @@ def benchit(repetitions, setup="pass", enabled=True):
     return inner
 
 
-def single_shot(setup="pass", enabled=True):
-    """Decorator for `bench.single_shot()`."""
+def single_shot(setup="pass", enabled=True) -> Union[Callable, dtypes.FunctionStats]:
+    """Decorator for `bench.single_shot()`.
+    
+    Args:
+        setup (str, optional): A function to run once before each call to `fn`. Defaults to "pass".
+        enabled (bool, optional): Enable or disable the wrapper. Defaults to True.
+    
+    Returns:
+        Union[Callable, dtypes.FunctionStats]: If `enabled`, applies the wrapper
+            which will benchmark the function and return a `dtypes.FunctionStats` object.
+            If False, this will be a no-op which returns the wrapped function.
+    """
 
     def inner(function):
         @wraps(function)
@@ -40,8 +62,21 @@ def single_shot(setup="pass", enabled=True):
     return inner
 
 
-def throughput(min_repetitions=1, setup="pass", enabled=True):
-    """Decorator for `bench.throughput()`."""
+def throughput(
+    min_repetitions=1, setup="pass", enabled=True
+) -> Union[Callable, dtypes.FunctionStats]:
+    """Decorator for `bench.throughput()`.
+    
+    Args:
+        min_repetitions (int, optional): Minimum number of times to benchmark function.
+        setup (str, optional): A function to run once before each call to `fn`. Defaults to "pass".
+        enabled (bool, optional): Enable or disable the wrapper. Defaults to True.
+    
+    Returns:
+        Union[Callable, dtypes.FunctionStats]: If `enabled`, applies the wrapper
+            which will benchmark the function and return a `dtypes.FunctionStats` object.
+            If False, this will be a no-op which returns the wrapped function.
+    """
 
     def inner(function):
         @wraps(function)
