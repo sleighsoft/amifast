@@ -128,7 +128,7 @@ def test_stats_as():
     _test_markdown(markdown, header=False)
 
     with pytest.raises(ValueError):
-        format.stats_as(stats, 'hello')
+        format.stats_as(stats, "hello")
 
     try:
         import matplotlib

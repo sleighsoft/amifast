@@ -1,5 +1,3 @@
-# https://www.peterbe.com/plog/how-to-do-performance-micro-benchmarks-in-python
-
 import timeit
 import sys
 
