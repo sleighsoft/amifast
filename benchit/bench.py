@@ -3,7 +3,7 @@
 import timeit
 import sys
 
-from benchit.dtypes import Stats
+from dtypes import Stats
 
 
 def benchit(fn, repetitions, setup="pass") -> Stats:

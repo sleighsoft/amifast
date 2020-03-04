@@ -2,7 +2,7 @@ import io
 import csv
 import os
 
-from benchit.dtypes import Stats
+from dtypes import Stats
 
 _STATS_HEADER = [
     "Min",
@@ -65,9 +65,9 @@ def stats_as_markdown(stats: Stats, header: bool = True, **kwargs) -> str:
     md_str = io.StringIO()
 
     if isinstance(stats, Stats):
-        header = "| " + " | ".join(_STATS_HEADER) + " |"
-        header_length = len(_STATS_HEADER)
         if header:
+            header = "| " + " | ".join(_STATS_HEADER) + " |"
+            header_length = len(_STATS_HEADER)
             md_str.write(header + os.linesep)
             md_str.write("|" + ": --- :|" * header_length + os.linesep)
 

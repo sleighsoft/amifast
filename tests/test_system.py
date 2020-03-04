@@ -1,6 +1,6 @@
 import system
 
-from benchit import dtypes
+import dtypes
 
 
 def test_collect_system_statistics():

@@ -2,7 +2,7 @@ from typing import Union, Callable
 from functools import wraps
 import os
 
-from benchit import dtypes, bench, format
+import dtypes, bench, format
 
 
 def benchit(

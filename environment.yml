@@ -5,3 +5,5 @@ dependencies:
   - pip:
     - matplotlib
     - py-cpuinfo
+    - pytest
+    - coverage

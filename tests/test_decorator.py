@@ -1,8 +1,8 @@
 import os
 import time
 
-from benchit import decorators
-from benchit import dtypes
+import decorators
+import dtypes
 
 
 def _function():
@@ -51,7 +51,7 @@ def test_single_shot():
 def test_throughput():
     result = decorators.throughput()(_function)()
     assert isinstance(result, dtypes.Stats)
-    assert result.repetitions >=1
+    assert result.repetitions >= 1
 
     result = decorators.throughput(min_repetitions=5)(_function)()
     assert isinstance(result, dtypes.Stats)

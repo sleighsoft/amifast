@@ -2,11 +2,18 @@ import platform
 import pkg_resources
 from cpuinfo import get_cpu_info
 
-from benchit import dtypes
+import dtypes
 
 
 def collect_system_statistics() -> dtypes.SystemStatistics:
-    # TODO Add documentation
+    """Collects general system statistics about Hardware, OS, Python, and
+    installed packages.
+
+    Note: Some entries might be empty if the information is not available.
+    
+    Returns:
+        dtypes.SystemStatistics: A SystemStatistics object.
+    """
     # Hardware
     bits, _ = platform.architecture()
     machine_type = platform.machine()
@@ -45,3 +52,15 @@ def collect_system_statistics() -> dtypes.SystemStatistics:
         python_installed_packages=python_installed_packages,
     )
     return statistics
+
+
+class Windows(object):
+    """Windows system statistics."""
+
+
+class Linux(object):
+    """Linux system statistics."""
+
+
+class MacOS(object):
+    """MacOS system statistics."""
