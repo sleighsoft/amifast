@@ -1,5 +1,5 @@
-import timeit
 import sys
+import timeit
 
 from dtypes import Stats
 
@@ -41,7 +41,7 @@ def benchit(fn, repetitions, setup="pass") -> Stats:
 def single_shot(fn, setup="pass") -> Stats:
     """Measures how long a single method execution takes to
     run. This is good to test how it performs under a cold start.
-    
+
     **Note**: By default, `single_shot()` temporarily turns off garbage collection
     during the timing. The advantage of this approach is that it makes
     independent timings more comparable. The disadvantage is that GC may
@@ -82,14 +82,14 @@ def throughput(fn, min_repetitions=1, setup="pass") -> Stats:
         fn (function): Function to benchmark.
         min_repetitions (int, optional): Minimum number of times to benchmark function.
         setup (str, optional): A function to run once before each call to `fn`. Defaults to "pass".
-    
+
     Returns:
         dtypes.Stats(
             times: A list containing benchmark times in seconds.
         )
     """
     timer = timeit.Timer(stmt=fn, setup=setup)
-    total_time = 0
+    total_time = 0.0
     repetitions = 0
     times = []
     while total_time < 1.0 or repetitions < min_repetitions:

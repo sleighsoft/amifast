@@ -1,4 +1,4 @@
-name: benchit
+name: benchit-dev
 dependencies:
   - python=3.7
   - pip
@@ -8,3 +8,5 @@ dependencies:
     - pytest
     - coverage
     - pre-commit
+    - mypy
+    - sphinx

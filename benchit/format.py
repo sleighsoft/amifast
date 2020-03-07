@@ -1,5 +1,5 @@
-import io
 import csv
+import io
 import os
 
 from dtypes import Stats
@@ -66,9 +66,9 @@ def stats_as_markdown(stats: Stats, header: bool = True, **kwargs) -> str:
 
     if isinstance(stats, Stats):
         if header:
-            header = "| " + " | ".join(_STATS_HEADER) + " |"
+            header_row = "| " + " | ".join(_STATS_HEADER) + " |"
             header_length = len(_STATS_HEADER)
-            md_str.write(header + os.linesep)
+            md_str.write(header_row + os.linesep)
             md_str.write("|" + ": --- :|" * header_length + os.linesep)
 
         row = (

@@ -1,15 +1,20 @@
-import statistics
-import math
 import inspect
+import math
+import statistics
 import time
-from typing import List, NamedTuple, Dict, Callable
+from typing import Callable
+from typing import Dict
+from typing import List
+from typing import NamedTuple
+from typing import Optional
+from typing import Union
 
 from utils import cached_property
 
 
 class Stats(object):
     """General Stats object created by benchmarking functions.
-    
+
     Has the following statistics:
         * mean
         * std
@@ -38,7 +43,7 @@ class Stats(object):
 
     def __init__(self, times: List[float]):
         """Create a Stats object given timing results from a benchmarking run.
-        
+
         Args:
             times (List[float]): A list of benchmarking times in seconds.
         """
@@ -110,10 +115,10 @@ class Stats(object):
     def throughput(self) -> float:
         """Computes the number of operations per second in this time series
         using the number of repetitions and the total runtime.
-        
+
         Note: This is `math.nan` if `total==0`.
         """
-        if self.total == 0:
+        if self.total == 0.0:
             return math.nan
 
         return self.repetitions / self.total
@@ -122,10 +127,10 @@ class Stats(object):
     def throughput_min(self) -> float:
         """Computes the number of operations per second in this time series
         using the minimum runtime over all runs.
-        
+
         Note: This is `math.nan` if `minimum==0`.
         """
-        if self.minimum == 0:
+        if self.minimum == 0.0:
             return math.nan
 
         return 1.0 / self.minimum
@@ -183,7 +188,7 @@ class Stats(object):
 
     def to_nanoseconds(self):
         """Converts `self.time` from the current `self.unit` to nanoseconds.
-        
+
         Note: This invalidates all cached_properties!
         """
         if self.unit != "ns":
@@ -193,7 +198,7 @@ class Stats(object):
 
     def to_microseconds(self):
         """Converts `self.time` from the current `self.unit` to microseconds.
-        
+
         Note: This invalidates all cached_properties!
         """
         if self.unit != "us":
@@ -203,7 +208,7 @@ class Stats(object):
 
     def to_milliseconds(self):
         """Converts `self.time` from the current `self.unit` to milliseconds.
-        
+
         Note: This invalidates all cached_properties!
         """
         if self.unit != "ms":
@@ -213,7 +218,7 @@ class Stats(object):
 
     def to_seconds(self):
         """Converts `self.time` from the current `self.unit` to seconds.
-        
+
         Note: This invalidates all cached_properties!
         """
         if self.unit != "s":
@@ -223,7 +228,7 @@ class Stats(object):
 
     def to_minutes(self):
         """Converts `self.time` from the current `self.unit` to minutes.
-        
+
         Note: This invalidates all cached_properties!
         """
         if self.unit != "m":
@@ -233,7 +238,7 @@ class Stats(object):
 
     def to_hours(self):
         """Converts `self.time` from the current `self.unit` to hours.
-        
+
         Note: This invalidates all cached_properties!
         """
         if self.unit != "h":
@@ -243,7 +248,7 @@ class Stats(object):
 
     def to_days(self):
         """Converts `self.time` from the current `self.unit` to days.
-        
+
         Note: This invalidates all cached_properties!
         """
         if self.unit != "d":
@@ -253,15 +258,12 @@ class Stats(object):
 
     def _conversion_fn(self, target) -> Callable[[float], float]:
         """Determines the conversion between `self.unit` and `target`.
-        
+
         Args:
             target (str): The target time unit. One of `[ns, us, ms, s, m, h, d]`.
-        
+
         Returns:
-            Callable[[float], float]: A function that converts self.float from`self.unit` to `targe
-            
-            Note: This invalidates all cached_properties!
-            t`.
+            Callable[[float], float]: A function that converts self.float from`self.unit` to `target`.
         """
         if self.unit == "ns":
             if target == "us":
@@ -354,6 +356,8 @@ class Stats(object):
                 return lambda x: x * 24 * 60
             elif target == "h":
                 return lambda x: x * 24
+        else:
+            raise ValueError(f"self.unit has an incorrect type {self.unit}")
 
     def _invalidate_cache(self):
         """Invalidates all cached_properties."""
@@ -399,7 +403,12 @@ class FunctionStats(Stats):
     Usually created by the benchmarking decorators in `decorators`.
     """
 
-    def __init__(self, times_or_stats, function, timestamp=None):
+    def __init__(
+        self,
+        times_or_stats: Union[List[float], Stats],
+        function: Callable,
+        timestamp: Optional[float] = None,
+    ):
         if isinstance(times_or_stats, Stats):
             times_or_stats = times_or_stats.times
         super().__init__(times_or_stats)
@@ -421,11 +430,11 @@ class FunctionStats(Stats):
         return self._timestamp
 
     @property
-    def file(self) -> str:
+    def file(self) -> Optional[str]:
         return self._file
 
     @property
-    def line(self) -> int:
+    def line(self) -> Optional[int]:
         return self._line
 
 

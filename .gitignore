@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.eggs/
+**/*.egg-info/
 
 # Unit test / coverage reports
 htmlcov/
@@ -22,3 +24,9 @@ cover/
 .vscode/
 *.code-workspace
 .env
+
+# Mypy
+.mypy_cache/
+
+# Versioning
+benchit/_version.py

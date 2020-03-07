@@ -1,20 +1,23 @@
-from typing import Union, Callable
-from functools import wraps
 import os
+from functools import wraps
+from typing import Callable
+from typing import Union
 
-import dtypes, bench, format
+import bench
+import dtypes
+import format
 
 
 def benchit(
     repetitions, setup="pass", enabled=True
 ) -> Union[Callable, dtypes.FunctionStats]:
     """Decorator for `bench.benchit()`.
-    
+
     Args:
         repetitions (int): Number of times to benchmark function.
         setup (str, optional): A function to run once before each call to `fn`. Defaults to "pass".
         enabled (bool, optional): Enable or disable the wrapper. Defaults to True.
-    
+
     Returns:
         Union[Callable, dtypes.FunctionStats]: If `enabled`, applies the wrapper
             which will benchmark the function and return a `dtypes.FunctionStats` object.
@@ -37,11 +40,11 @@ def benchit(
 
 def single_shot(setup="pass", enabled=True) -> Union[Callable, dtypes.FunctionStats]:
     """Decorator for `bench.single_shot()`.
-    
+
     Args:
         setup (str, optional): A function to run once before each call to `fn`. Defaults to "pass".
         enabled (bool, optional): Enable or disable the wrapper. Defaults to True.
-    
+
     Returns:
         Union[Callable, dtypes.FunctionStats]: If `enabled`, applies the wrapper
             which will benchmark the function and return a `dtypes.FunctionStats` object.
@@ -66,12 +69,12 @@ def throughput(
     min_repetitions=1, setup="pass", enabled=True
 ) -> Union[Callable, dtypes.FunctionStats]:
     """Decorator for `bench.throughput()`.
-    
+
     Args:
         min_repetitions (int, optional): Minimum number of times to benchmark function.
         setup (str, optional): A function to run once before each call to `fn`. Defaults to "pass".
         enabled (bool, optional): Enable or disable the wrapper. Defaults to True.
-    
+
     Returns:
         Union[Callable, dtypes.FunctionStats]: If `enabled`, applies the wrapper
             which will benchmark the function and return a `dtypes.FunctionStats` object.
