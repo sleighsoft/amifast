@@ -5,8 +5,8 @@ import tempfile
 
 import pytest
 
-from benchit import dtypes
-from benchit import format
+from amifast import dtypes
+from amifast import format
 
 
 def _test_csv(csv, append):

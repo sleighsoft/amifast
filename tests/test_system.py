@@ -1,4 +1,4 @@
-from benchit import system
+from amifast import system
 
 
 def test_collect_system_statistics():

@@ -7,9 +7,9 @@ from typing import Dict
 from typing import TextIO
 from typing import Union
 
-from benchit import bench
-from benchit import dtypes
-from benchit import format
+from amifast import bench
+from amifast import dtypes
+from amifast import format
 
 
 def benchit(
@@ -162,7 +162,7 @@ def stats_as(
                 raise TypeError(
                     f"@stats_as can only be used on functions that return dtypes.Stats. "
                     "Note: @stats_as should always be declared before a benchmarking "
-                    "decorator such as @benchit, @single_shot, @throughput!"
+                    "decorator such as @amifast, @single_shot, @throughput!"
                 )
 
             formatted_stats = format.stats_as(result, style=style, **kwargs)
@@ -250,7 +250,7 @@ def validate(
                 raise TypeError(
                     f"@validate can only be used on functions that return dtypes.Stats. "
                     "Note: @validate should always be declared before a benchmarking "
-                    "decorator such as @benchit, @single_shot, @throughput or any "
+                    "decorator such as @amifast, @single_shot, @throughput or any "
                     "other decorator that returns dtypes.Stats!"
                 )
 

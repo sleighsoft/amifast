@@ -1,4 +1,4 @@
-<h2 algin="center"> benchit: simple powerful benchmarking with Python</h2>
+<h2 algin="center"> amifast: simple powerful benchmarking with Python</h2>
 
 ---
 

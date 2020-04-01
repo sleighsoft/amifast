@@ -5,7 +5,7 @@ import time
 
 import pytest
 
-from benchit import dtypes
+from amifast import dtypes
 
 
 def _make_runtime_function():

@@ -2,7 +2,7 @@ import os
 import random
 import time
 
-import benchit
+import amifast
 
 # ------ Clear file if it exists ------ #
 
@@ -19,9 +19,9 @@ if os.path.exists("decorator_vs_functional.csv"):
 #   3. Save converted stats to decorator_vs_functional.csv
 
 
-@benchit.d_save("decorator_vs_functional.csv")
-@benchit.d_stats_as("csv")
-@benchit.d_benchit(10)
+@amifast.d_save("decorator_vs_functional.csv")
+@amifast.d_stats_as("csv")
+@amifast.d_benchit(10)
 def wait_a_moment():
     time.sleep(random.random() / 100)
 

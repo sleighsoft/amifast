@@ -2,8 +2,8 @@ import math
 import random
 import time
 
-from benchit import bench
-from benchit import dtypes
+from amifast import bench
+from amifast import dtypes
 
 
 TOLERANCE = 1e-1

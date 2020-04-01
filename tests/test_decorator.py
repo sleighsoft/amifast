@@ -5,9 +5,9 @@ import time
 
 import pytest
 
-from benchit import decorators
-from benchit import dtypes
-from benchit import format
+from amifast import decorators
+from amifast import dtypes
+from amifast import format
 
 
 def _function():
@@ -252,7 +252,7 @@ def test_validate():
     assert False
 
 
-# TODO Add tests for nesting @stats_as -> @benchit
+# TODO Add tests for nesting @stats_as -> @amifast
 def test_decorator_chaining():
     def _inner():
         time.sleep(0.01)

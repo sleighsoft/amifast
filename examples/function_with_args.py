@@ -1,7 +1,7 @@
 import random
 import time
 
-import benchit
+import amifast
 
 # ================================ DECORATOR ================================ #
 
@@ -12,7 +12,7 @@ import benchit
 #   3. Save converted stats to decorator_vs_functional.csv
 
 
-@benchit.d_benchit(2)
+@amifast.d_benchit(2)
 def wait_a_moment(a_moment):
     time.sleep(a_moment)
 
