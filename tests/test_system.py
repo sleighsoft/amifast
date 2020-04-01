@@ -1,13 +1,13 @@
 import system
 
-import dtypes
-
 
 def test_collect_system_statistics():
     statistics = system.collect_system_statistics()
-    assert len(statistics) == 14
-    assert isinstance(statistics, dtypes.SystemStatistics)
+    assert len(statistics) == 17
+    assert isinstance(statistics, system.SystemStatistics)
     # Hardware
+    assert hasattr(statistics, "cpu_count")
+    assert isinstance(statistics.cpu_count, int)
     assert hasattr(statistics, "bits")
     assert hasattr(statistics, "machine_type")
     assert hasattr(statistics, "processor")
@@ -15,6 +15,8 @@ def test_collect_system_statistics():
     assert hasattr(statistics, "processor_architecture")
     # OS
     assert hasattr(statistics, "platform_string")
+    assert hasattr(statistics, "c_timer")
+    assert hasattr(statistics, "c_timer_resolution")
     # Python
     assert hasattr(statistics, "python_implementation")
     assert hasattr(statistics, "python_version")

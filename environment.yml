@@ -10,3 +10,5 @@ dependencies:
     - pre-commit
     - mypy
     - sphinx
+    - black
+    - pylint

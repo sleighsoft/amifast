@@ -1,9 +1,13 @@
+"""
+benchit: simple powerful benchmarking with Python
+"""
 from . import decorators
 from . import dtypes
 from . import format
 from .bench import benchit
 from .bench import single_shot
 from .bench import throughput
+from .config import main
 
 try:
     from ._version import version as __version__
@@ -19,5 +23,6 @@ __all__ = [
     "dtypes",
     "format",
     "decorators",
+    "main",
     "__version__",
 ]
