@@ -5,9 +5,9 @@ import time
 
 import pytest
 
-import decorators
-import dtypes
-import format
+from benchit import decorators
+from benchit import dtypes
+from benchit import format
 
 
 def _function():
@@ -94,7 +94,7 @@ def test_single_shot():
         time.sleep(a + b + c)
 
     result = _inner(0.1, 0.2, c=0.3)
-    assert math.isclose(result.total, 0.6, abs_tol=0.01)
+    assert math.isclose(result.total, 0.6, abs_tol=0.05)
 
 
 def test_throughput():

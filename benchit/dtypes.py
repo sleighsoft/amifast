@@ -14,7 +14,7 @@ from typing import TextIO
 from typing import Tuple
 from typing import Union
 
-from utils import cached_property
+from benchit.utils import cached_property
 
 
 class TimeUnit(Enum):

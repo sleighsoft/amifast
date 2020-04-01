@@ -5,8 +5,8 @@ import tempfile
 
 import pytest
 
-import dtypes
-import format
+from benchit import dtypes
+from benchit import format
 
 
 def _test_csv(csv, append):
@@ -144,7 +144,7 @@ def test_stats_as():
 
     # JSON
     json1 = format.stats_as(stats, "json")
-    _test_json(json1)
+    _test_json(json1, append=True)
 
     json2 = format.stats_as(stats, format.Format.JSON)
     assert json1.resource() == json2.resource()
@@ -235,7 +235,8 @@ def test_JSON():
 
     # dtypes.Stats
     json_stat = format.JSON(dtypes.Stats([0.0, 1.0, 2.0, 3.0], lambda x: x, 0))
-    _test_json(json_stat)
+    _test_json(json_stat, append=True)
+    _test_json(json_stat, append=False)
 
     with tempfile.TemporaryDirectory() as dir:
         # append but file does not exist yet
@@ -244,7 +245,7 @@ def test_JSON():
         assert os.path.exists(json_file)
         with open(json_file, "r", newline="") as read_f:
             read_json = read_f.read()
-            assert read_json == json_stat.resource()
+            assert read_json == json.dumps(json_stat.resource(append=False))
 
         # append but file exists
         json_stat.save(json_file, append=True)

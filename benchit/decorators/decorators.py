@@ -7,9 +7,9 @@ from typing import Dict
 from typing import TextIO
 from typing import Union
 
-import bench
-import dtypes
-import format
+from benchit import bench
+from benchit import dtypes
+from benchit import format
 
 
 def benchit(

@@ -12,7 +12,7 @@ from typing import Dict
 from typing import Optional
 from typing import Union
 
-import dtypes
+from benchit import dtypes
 
 try:
     import matplotlib.pyplot as plt
@@ -337,7 +337,7 @@ class JSON(FormattedStats):
                 f.write(json.dumps(old_data))
         else:
             with open(file, "w", newline="") as f:
-                f.write(self.resource())
+                f.write(json.dumps(self.resource()))
 
 
 class Plot(FormattedStats):

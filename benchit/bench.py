@@ -6,7 +6,7 @@ from typing import Optional
 from typing import Tuple
 from typing import Union
 
-from dtypes import Stats
+from benchit.dtypes import Stats
 
 
 def _wrap_function_if_callable(

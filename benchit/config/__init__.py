@@ -1,8 +1,8 @@
 """
 command line options
 """
-from collectors.file_system_collector import FSCollector
-from config.argument_parser import Parser
+from .argument_parser import Parser
+from benchit.collectors.file_system_collector import FSCollector
 
 
 def main():
