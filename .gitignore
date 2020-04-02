@@ -30,3 +30,10 @@ cover/
 
 # Versioning
 amifast/_version.py
+
+# twine
+.pypirc
+
+# pypi
+build/
+dist/

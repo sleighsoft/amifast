@@ -40,8 +40,8 @@ def wait_a_moment_2():
 
 
 # 1. Benchmark it 10 times
-stats = benchit.benchit(wait_a_moment_2, 10)
+stats = amifast.benchit(wait_a_moment_2, 10)
 # 2. Convert stats to CSV
-as_csv = benchit.stats_as(stats, "csv")
+as_csv = amifast.stats_as(stats, "csv")
 # 3. Save converted stats to decorator_vs_functional.csv
 as_csv.save("decorator_vs_functional.csv")
